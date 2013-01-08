@@ -46,7 +46,7 @@
     android:layout_centerHorizontal="true"
     android:gravity="center"
     android:text="@string/Clear" />
-
+
 <TextView
     android:id="@+id/widget36"
     android:layout_width="wrap_content"
@@ -57,7 +57,7 @@
     android:textColor="@color/White"
     android:textSize="@dimen/TextSize"
     android:textStyle="bold" />
-
+
 <TextView
     android:id="@+id/textView1"
     android:layout_width="49dp"
@@ -80,7 +80,7 @@
     android:hint="@string/SecondNumber"
     android:inputType="numberDecimal"
     android:textSize="18sp" />
-
+
 <TextView
     android:id="@+id/textView2"
     android:layout_width="wrap_content"
