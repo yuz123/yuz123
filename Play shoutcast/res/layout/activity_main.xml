@@ -1,6 +1,9 @@
-
-    <RelativeLayout android:layout_width="fill_parent"
-        android:layout_height="fill_parent" xmlns:android="http://schemas.android.com/apk/res/android">        <ImageButton
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+android:layout_width="fill_parent"
+android:layout_height="fill_parent"
+android:orientation="vertical" >
+                <ImageButton
             android:id="@+id/imageButton1"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
@@ -49,5 +52,14 @@
             android:layout_above="@+id/imageButton1"
             android:layout_centerHorizontal="true"
             android:text="Quality" />
+
+        <ListView
+            android:id="@+id/listView1"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_below="@+id/imageButton1"
+            android:layout_centerHorizontal="true"
+            android:layout_marginTop="10dp" >
+        </ListView>
 
     </RelativeLayout>

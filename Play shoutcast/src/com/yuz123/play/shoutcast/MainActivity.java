@@ -4,6 +4,12 @@ import java.io.BufferedReader;
 import java.io.IOException;
 import java.io.InputStream;
 import java.io.InputStreamReader;
+import java.net.URL;
+import java.util.ArrayList;
+import java.util.Iterator;
+import java.util.List;
+import java.util.Timer;
+import java.util.TimerTask;
 
 
 import org.apache.http.HttpEntity;
@@ -12,6 +18,9 @@ import org.apache.http.client.ClientProtocolException;
 import org.apache.http.client.methods.HttpGet;
 import org.apache.http.entity.BufferedHttpEntity;
 import org.apache.http.impl.client.DefaultHttpClient;
+import org.htmlcleaner.TagNode;
+
+import com.yuz123.play.HtmlHelper;
 
 
 import android.app.Activity;
@@ -25,10 +34,13 @@ import android.net.NetworkInfo;
 import android.net.Uri;
 import android.os.AsyncTask;
 import android.os.Bundle;
+import android.os.Handler;
 import android.util.Log;
 import android.view.View;
 
+import android.widget.ArrayAdapter;
 import android.widget.ImageButton;
+import android.widget.ListView;
 import android.widget.TextView;
 import android.widget.Toast;
 import android.widget.ToggleButton;
@@ -39,7 +51,7 @@ public class MainActivity extends Activity implements
 
 	private String TAG = getClass().getSimpleName();
 	private MediaPlayer mp = null;
-	TextView songText = (TextView) findViewById(R.id.textView1);
+	TextView songText;
 	ToggleButton QB;
 	private ImageButton stop;
 	private ImageButton imageButton1;
@@ -50,7 +62,8 @@ public class MainActivity extends Activity implements
 	public void onCreate(Bundle icicle) {
 		super.onCreate(icicle);
 		setContentView(R.layout.activity_main);
-				
+		TextView songText = (TextView) findViewById(R.id.textView1);
+		ListView listView1 = (ListView) findViewById(R.id.listView1);
 		songText.setTypeface(Typeface.createFromAsset(getAssets(), "lets_go_digital.ttf"));
 		songText.setTextSize(40);
 		songText.setTextColor(Color.parseColor("#FF8C00"));
@@ -78,7 +91,8 @@ public class MainActivity extends Activity implements
 				stop();
 			}
 		});
-		}
+		
+	}
 	
 	
 	
@@ -97,9 +111,22 @@ public class MainActivity extends Activity implements
 				mp.stop();
 				mp.reset();
 			}
+			Timer myTimer = new Timer(); // Создаем таймер
+			final Handler uiHandler = new Handler();
+			final TextView songText = (TextView) findViewById(R.id.textView1);
 			
-			TitleAsyncTask titleUpdate = new TitleAsyncTask();
-			titleUpdate.execute();
+			myTimer.schedule(new TimerTask(){ // Определяем задачу
+			    @Override
+			    public void run() {
+			        final String result = titleUpdate();
+			        uiHandler.post(new Runnable() {
+			            @Override
+			            public void run() {
+			                songText.setText(result);
+			            }
+			        });
+			    };
+			}, 0L, 30000); // интервал - 60000 миллисекунд, 0 миллисекунд до первого запуска.
 			
 			mp.setDataSource(this, myUri); // Go to Initialized state
 			mp.setAudioStreamType(AudioManager.STREAM_MUSIC);
@@ -118,6 +145,42 @@ public class MainActivity extends Activity implements
 	}		
 	
 	
+	protected String titleUpdate() {
+		// TODO Auto-generated method stub
+		DefaultHttpClient httpclient = new DefaultHttpClient();
+		HttpGet httppost = new HttpGet("http://bigbeats.ru/title.php");
+		HttpResponse response;
+		StringBuilder total = new StringBuilder();
+		try {
+			response = httpclient.execute(httppost);
+			HttpEntity ht = response.getEntity();
+
+	        BufferedHttpEntity buf = new BufferedHttpEntity(ht);
+
+	        InputStream is = buf.getContent();
+
+
+	        BufferedReader r = new BufferedReader(new InputStreamReader(is));
+
+	        String line;
+	        while ((line = r.readLine()) != null) {
+	        	
+	            total.append(line + "\n");
+	        }
+
+		} catch (ClientProtocolException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		} catch (IOException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
+		return total.toString();
+	}
+		
+
+
+
 	@Override
 	public void onPrepared(MediaPlayer mp) {
 		Log.d(TAG, "Stream is prepared");
@@ -208,9 +271,41 @@ public class MainActivity extends Activity implements
 	    }
 		return false;
 	}
-
+}
 	
-	public class TitleAsyncTask extends AsyncTask<Void, Void, String> {
+class ParseSite extends AsyncTask<String, Void, List<String>> {
+    //Фоновая операция
+    protected List<String> doInBackground(String... arg) {
+      List<String> output = new ArrayList<String>();
+      try
+      {
+        HtmlHelper hh = new HtmlHelper(new URL(arg[0]));
+        List<TagNode> links = hh.getLinksByClass("question-hyperlink");
+
+        for (Iterator<TagNode> iterator = links.iterator(); iterator.hasNext();)
+        {
+          TagNode divElement = (TagNode) iterator.next();
+          output.add(divElement.getText().toString());
+        }
+      }
+      catch(Exception e)
+      {
+        e.printStackTrace();
+      }
+      return output;
+    }
+
+    //Событие по окончанию парсинга
+    protected void onPostExecute(List<String> output) {
+      //Находим ListView
+      
+      //Загружаем в него результат работы doInBackground
+      listView1.setAdapter(new ArrayAdapter<String>(StackParser.this,
+          android.R.layout.simple_list_item_1 , output));
+    }
+  }
+
+	/*public class TitleAsyncTask extends AsyncTask<Void, Void, String> {
  
 		protected String doInBackground(Void... s) {
 			DefaultHttpClient httpclient = new DefaultHttpClient();
@@ -248,4 +343,4 @@ public class MainActivity extends Activity implements
 			songText.setText(result);
 		}
 	}
-	}
+	}*/
