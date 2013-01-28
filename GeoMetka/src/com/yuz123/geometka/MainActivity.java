@@ -68,7 +68,7 @@ public class MainActivity extends Activity implements LocationListener {
 	    	  //lat = location.getLatitude(); 	
 	    	  //longi = ("Долгота="+location.getLongitude());
 	    	  LatLng MyPosition = new LatLng(location.getLatitude(), location.getLongitude());
-	    	  map.animateCamera(CameraPositionCreator.tilt(90));
+	    	//  map.animateCamera(CameraPositionCreator.tilt(90));
 	    	  map.moveCamera(CameraUpdateFactory.newLatLngZoom(MyPosition, 15));
 	    	  //latitude.setText("Широта="+location.getLatitude());
 	          //longitude.setText("Долгота="+location.getLongitude());
