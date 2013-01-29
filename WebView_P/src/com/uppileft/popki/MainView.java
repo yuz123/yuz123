@@ -156,7 +156,7 @@ public class MainView extends Activity {
 		editor.putInt("check_run_times", check_run_times);
 		editor.commit();
 		Intent browserIntent = new Intent(Intent.ACTION_VIEW,
-				Uri.parse("https://play.google.com/store/apps/details?id=com.uppileft.popki&feature=search_result#?t=W251bGwsMSwxLDEsImNvbS51cHBpbGVmdC50aXRzaG90Z2lybCJd"));
+				Uri.parse("https://play.google.com/store/apps/details?id=com.uppileft.popki&feature=more_from_developer#?t=W251bGwsMSwyLDEwMiwiY29tLnVwcGlsZWZ0LnBvcGtpIl0"));
 		startActivity(browserIntent);
 		finish();
 	}
