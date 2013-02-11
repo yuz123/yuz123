@@ -8,7 +8,7 @@
     <string name="estimate_dialog_text">Want more? Tell us about it! Just give the program 5 points and we`ll add all pictures!</string>
     <string name="estimate_dialog_button">Rate it!</string>
     <string name="activity_load_title">Loading...</string>
-    <string name="main_url">https://sites.google.com/site/popkimobile/</string>
+    <string name="main_url">http://www.prbum.com/pebagity</string>
     <string name="no_connection">Oops, no internet connection!</string>
     <string name="google_estimate_url"></string>
     <string name="exit_dialog_text">Exit?</string>
