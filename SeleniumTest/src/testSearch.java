@@ -1,8 +1,11 @@
 import java.util.concurrent.TimeUnit;
 
+import junit.framework.Assert;
+
 import org.junit.After;
 import org.junit.Before;
 import org.junit.Test;
+import org.openqa.selenium.chrome.ChromeDriver;
 import org.openqa.selenium.firefox.FirefoxDriver;
 
 
@@ -20,7 +23,7 @@ private FirefoxDriver driver;
 	}
 	
 	@After
-	private void tearDown() {
+	public void tearDown() {
 		driver.close();
 
 	}	
@@ -29,5 +32,6 @@ private FirefoxDriver driver;
 	public void test(){
 		HomePage home = new HomePage(driver);
 		MainPage main = home.login("","");
+		Assert.assertTrue(main.welcome("Добро пожаловать на Facebook");
 	}
 }
