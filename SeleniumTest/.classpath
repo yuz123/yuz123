@@ -3,6 +3,8 @@
 	<classpathentry kind="src" path="src"/>
 	<classpathentry kind="con" path="org.eclipse.jdt.launching.JRE_CONTAINER/org.eclipse.jdt.internal.debug.ui.launcher.StandardVMType/JavaSE-1.7"/>
 	<classpathentry kind="con" path="org.eclipse.jdt.junit.JUNIT_CONTAINER/4"/>
-	<classpathentry kind="lib" path="C:/Users/yutk.KYIV/Dropbox/Selenium/selenium-server-standalone-2.29.0.jar"/>
+	<classpathentry kind="lib" path="D:/Yuriy_Tkachenko/inst/selenium-server-standalone-2.31.0.jar" sourcepath="D:/Yuriy_Tkachenko/inst/selenium-server-standalone-2.31.0.jar"/>
+	<classpathentry kind="lib" path="D:/Yuriy_Tkachenko/inst/slf4j-1.7.3/slf4j-1.7.3/slf4j-api-1.7.3.jar" sourcepath="D:/Yuriy_Tkachenko/inst/slf4j-1.7.3/slf4j-1.7.3/slf4j-api-1.7.3-sources.jar"/>
+	<classpathentry kind="lib" path="D:/Yuriy_Tkachenko/inst/slf4j-1.7.3/slf4j-1.7.3/slf4j-simple-1.7.3.jar"/>
 	<classpathentry kind="output" path="bin"/>
 </classpath>
