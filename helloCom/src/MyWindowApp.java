@@ -24,7 +24,7 @@ public class MyWindowApp  extends JFrame {
         setBounds(200, 200, 300, 200); //Если не выставить размер и положение - то окно будет мелкое и незаметное
         //Подготавливаем компоненты объекта
         countLabel = new JLabel("Controls");
-        Forward = new JButton("Forward");
+        Forward = new JButton("Forward"); //почитать 255 страницу, про обработчик нажатий
         Back = new JButton("Back");
         Left = new JButton("Left");
         Right = new JButton("Right");
