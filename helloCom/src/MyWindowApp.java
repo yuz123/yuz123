@@ -41,9 +41,13 @@ public class MyWindowApp  extends JFrame {
         buttonsPanel.add(Left);
         buttonsPanel.add(Right);
         buttonsPanel.add(Light);
+        Forward.setText("FWD");
      
         add(buttonsPanelForward, BorderLayout.CENTER);
         add(buttonsPanel, BorderLayout.AFTER_LAST_LINE);
+        
+        MyWindowApp app = new MyWindowApp(); //Создаем экземпляр нашего приложения
+        app.setVisible(true);
       }
     
      
