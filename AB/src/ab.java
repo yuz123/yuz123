@@ -6,9 +6,12 @@ public class ab {
     public static void main(String[] args) {
         Scanner asc = new Scanner(System.in);
         ArrayList<Object> array = new ArrayList<Object>();
+        System.out.println("0");
         String a = asc.next();
+        System.out.println("1");
         while (asc.hasNext()) {
-            array.add(asc.nextDouble());    
+            array.add(asc.nextDouble()); 
+           // System.out.println(array.get(2));
         }
         for (int i = 0; i <= array.size()-1; i++) {
             System.out.println(array.get(i));
