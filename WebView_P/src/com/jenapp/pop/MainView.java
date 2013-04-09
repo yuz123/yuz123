@@ -1,18 +1,15 @@
-package com.uppileft.popki;
+package com.jenapp.pop;
 
-// import android.annotation.SuppressLint;
 import android.annotation.TargetApi;
 import android.app.Activity;
 import android.app.AlertDialog;
 import android.app.Dialog;
-// import android.app.ProgressDialog;
 import android.content.DialogInterface;
 import android.content.Intent;
 import android.content.SharedPreferences;
 import android.graphics.Typeface;
 import android.net.Uri;
 import android.os.Bundle;
-// import android.support.v4.app.DialogFragment;
 import android.view.KeyEvent;
 import android.view.Menu;
 import android.view.MenuItem;
@@ -21,12 +18,10 @@ import android.webkit.WebChromeClient;
 import android.webkit.WebView;
 import android.webkit.WebViewClient;
 import android.widget.TextView;
-//import android.widget.Toast;
 
 @TargetApi(11)
 public class MainView extends Activity {
 	WebView webview;
-	//Boolean flag;
 	int check_run_times;   
 
 	@Override
